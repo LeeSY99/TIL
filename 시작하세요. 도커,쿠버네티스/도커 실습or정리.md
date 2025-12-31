@@ -3,18 +3,19 @@ Window로 진행하였습니다
 git 설치, docker desktop 설치
 
 1. alias 설정
-
-echo “alias docker=’winpty docker’” >> ~/.bashrc
-
-git bash 에서 docker 명령 실행시 winpty 설정
-
-터미널에 docker대신에 winpty docker로 명령어 들어감. 반복적으로 하는게 번거롭기 때문에 설정
-
-1. 컨테이너 모두 삭제
-
-mac: docker rm -f $(docker ps -aq)
-
-window - powershell : docker ps -aq | ForEach-Object {docker rm -f $_}
+    
+    echo “alias docker=’winpty docker’” >> ~/.bashrc
+    
+    git bash 에서 docker 명령 실행시 winpty 설정
+    
+    터미널에 docker대신에 winpty docker로 명령어 들어감. 반복적으로 하는게 번거롭기 때문에 설정
+    
+2. 컨테이너 모두 삭제
+    
+    mac: docker rm -f $(docker ps -aq)
+    
+    window - powershell : docker ps -aq | ForEach-Object {docker rm -f $_}
+    
 
 서버란? 하드워어와 하드웨어에서 실행하는 소프트웨어까지 모두 포함
 
@@ -23,6 +24,8 @@ window - powershell : docker ps -aq | ForEach-Object {docker rm -f $_}
 종류
 
 파일서버, db서버, 웹서버(https, css, js를 받음), 웹 애플리케이션 서버[WAS] (프로그래밍 언어로 개발된 백엔드 앱을 실행)
+
+---
 
 **서버 운영 방식**
 
@@ -50,6 +53,8 @@ window - powershell : docker ps -aq | ForEach-Object {docker rm -f $_}
 
 → 컨테이너 가상화가 다른 2가지 가상화 보다 빠르다 그 이유는 컨테이너 가상화는 별도의 게스트 os 없이 호스트 os 커널을 사용하기 때문.
 
+---
+
 **가상화** - 실제로 존재하지 않는 컴퓨터를 사용하게 함 → 하나의 컴퓨터에서 여러개의 컴퓨터 실행할 수 있음 → 물리적인 컴퓨팅 환경 내부에서 논리적인 컴퓨팅 환경을 만들 수 있는 기술
 
 한 컴퓨터 안에 여러개 앱을 실행중일 때 하나의 앱에서 오류가 발생하거나, 자원 사용량이 증가하면 다른 앱에도 영향을 미칠 수 있음 → 운영중인 서비스가 장애를 겪으면 치명적 → 하나의 os에서 운영하는 것은 피하는게 좋음
@@ -57,6 +62,8 @@ window - powershell : docker ps -aq | ForEach-Object {docker rm -f $_}
 가상화 기술로 여러개의 os를 만들 수 있고 리소스를 분배할 수 있음. 서로 프로그램이 영향을 줄 수 없음
 
 낮은 성능 여러개보단 큰 거 하나가 효율적
+
+---
 
 **도커 아키텍처(클라이언트-서버 모델)**
 
@@ -67,6 +74,8 @@ window - powershell : docker ps -aq | ForEach-Object {docker rm -f $_}
 API : 두 상호 관계에서 주고 받는 데이터의 약속
 
 사용자가 CLI 를 통해 명령어로 전달하면 도커 데몬에 API 형태로 전달
+
+---
 
 **컨테이너 실행 명령어**
 
@@ -81,6 +90,8 @@ docker run (option) [image_name] : 컨테이너 실행
 docker rm 컨테이너id / 이름
 
 -d : 백그라운드로 컨테이너 실행
+
+---
 
 **이미지와 컨테이너**
 
@@ -102,4 +113,4 @@ nginx 설치할때 필요한 구성요소 설치 따로 안하고 이미지로�
 
 컨테이너 라이프사이클
 
-생성, 실행, 일시정지(paused)[마지막 상태에서 재시작], 종료(stopped)[메모리 cpu 할당 끊김]
+생성, 실행, 일시정지(paused)[마지막 상태에서 재시작, 메모리는 그대로 할당], 종료(stopped)[메모리 cpu 할당 끊김]
